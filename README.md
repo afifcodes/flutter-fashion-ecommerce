@@ -1,16 +1,26 @@
-# flutter_fashion_ecommerce
+## Flutter UI - Fashion ECommerce
 
-A new Flutter project.
+```dart
+void main() => runApp(MaterialApp(
+      theme: ThemeData(fontFamily: 'Manrope'),
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    ));
+```
 
-## Getting Started
+## Development Setup
+```
+git clone https://github.com/afifudinx/flutter-fashion-ecommerce.git
+cd flutter-fashion-ecommerce
+flutter pub get
+flutter run
+```
 
-This project is a starting point for a Flutter application.
+## Screenshots
+<img src="screenshots/1.png" />
 
-A few resources to get you started if this is your first Flutter project:
+## Links
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [Website](https://afifudinx.vercel.app)
+* [Youtube channel](https://youtube.com/developedbyafif)
+* [Instagram](https://instagram.com/developedbyafif)
