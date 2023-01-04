@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fashion_ecommerce/utils/route_arguments.dart';
 import 'package:flutter_fashion_ecommerce/utils/system_ui.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:ionicons/ionicons.dart';
@@ -248,58 +249,69 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisSpacing: 16,
               itemCount: cards.length,
               itemBuilder: (context, index) {
-                return Container(
-                  margin: EdgeInsets.only(top: index == 1 ? 36 : 0, bottom: 28),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 200,
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
-                              image: DecorationImage(
-                                  image:
-                                      NetworkImage(cards[index]['image_url']),
-                                  fit: BoxFit.cover)),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    cards[index]['is_liked'] =
-                                        !cards[index]['is_liked'];
-                                  });
-                                },
-                                child: Icon(
-                                  cards[index]['is_liked']
-                                      ? Ionicons.heart
-                                      : Ionicons.heart_outline,
-                                ),
-                              )
-                            ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/detail',
+                        arguments: DetailScreenArguments(
+                            cards[index]['name'],
+                            cards[index]['price'],
+                            cards[index]['is_liked'],
+                            cards[index]['image_url']));
+                  },
+                  child: Container(
+                    margin:
+                        EdgeInsets.only(top: index == 1 ? 36 : 0, bottom: 28),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 200,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24),
+                                image: DecorationImage(
+                                    image:
+                                        NetworkImage(cards[index]['image_url']),
+                                    fit: BoxFit.cover)),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      cards[index]['is_liked'] =
+                                          !cards[index]['is_liked'];
+                                    });
+                                  },
+                                  child: Icon(
+                                    cards[index]['is_liked']
+                                        ? Ionicons.heart
+                                        : Ionicons.heart_outline,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          cards[index]['name'].toUpperCase(),
-                          style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: -0.5),
-                        ),
-                        Text(
-                          cards[index]['price'] + ' EUR',
-                          style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -1),
-                        ),
-                      ]),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            cards[index]['name'].toUpperCase(),
+                            style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: -0.5),
+                          ),
+                          Text(
+                            cards[index]['price'] + ' EUR',
+                            style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -1),
+                          ),
+                        ]),
+                  ),
                 );
               },
             ),
